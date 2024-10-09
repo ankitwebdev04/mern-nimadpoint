@@ -3,6 +3,7 @@ import "./Home.css";
 import Header from '../../components/Header/Header';
 import ExploreMenu from '../../components/ExploreMenu/ExploreMenu';
 import FoodDisplay from '../../components/FoodDisplay/FoodDisplay';
+import AppDownload from '../../components/AppDownload/AppDownload';
 
 const Home = () => {
 
@@ -18,6 +19,8 @@ const Home = () => {
       {/* Here category is passed as a prop after passing 
       destruct this into fooddisplay.jsx file */}
       <FoodDisplay category={category}/>
+      {/* this component is mounted from App Download jsx file */}
+      <AppDownload/>
     </div>
   )
 }
