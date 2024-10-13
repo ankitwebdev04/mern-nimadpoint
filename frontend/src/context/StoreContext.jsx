@@ -23,13 +23,33 @@ const StoreContextProvider = (props) => {
         }
     }
     // decrease the value by 1
-    const removeFromCart = () => {
+    const removeFromCart = (itemId) => {
         setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }))
     }
 
-    useEffect(()=>{
-        console.log(cartItems);
-    },[cartItems])
+    // creating an arrow function which will return the cart total
+    // added a variable with totalamount and initialised it with 0
+    const getTotalCartAmount = () => {
+        let totalAmount = 0;
+        // we are using the for in loop because the cartItems is an object
+        // so this for loop will iterate over the object and it will provide items 1 by 1
+        // items will be the key value of cartItems
+
+        for (const item in cartItems) {
+            // agar productid se item match hota h to mtlb cart me item available hoga
+            // ye iteminfo.price 1 product ki price btayega jisko multiply krenge 
+            //quantity se jisse totalAmount miljayega
+            if (cartItems[item] > 0)
+            {
+                let itemInfo = food_list.find((product) => product._id === item)
+                totalAmount += itemInfo.price * cartItems[item];
+            }
+        }
+        return  totalAmount;
+    }
+    // useEffect(()=>{
+    //     console.log(cartItems);
+    // },[cartItems])
 
     // IF we have any element in this object we can access that element in any component using the context.
     {/*Using this context we can access the food_list array anywhere */ }
@@ -38,7 +58,8 @@ const StoreContextProvider = (props) => {
         cartItems,
         setCartItems,
         addToCart,
-        removeFromCart
+        removeFromCart,
+        getTotalCartAmount
     }
     return (
         <StoreContext.Provider value={contextValue}>
