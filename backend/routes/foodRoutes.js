@@ -1,10 +1,11 @@
 import express from "express";
-import { addFood } from "../controllers/foodController.js";
+import { addFood, listFood, removeFood } from "../controllers/foodController.js";
 import multer from "multer"; // using multer for image storage system
 
 // created an express router 
 // we can create get method,post method and other as well..
 const foodRouter = express.Router();
+
 
 // Image Storage Engine
 
@@ -16,10 +17,13 @@ const storage = multer.diskStorage({
     }
 })
 
-const upload = multer({storage:storage})
+const upload = multer({storage:storage});
 
 // so here we have used this upload middleware to upload the image that is created using multer 
-foodRouter.post("/add",upload.single("image"),addFood)
+foodRouter.post("/add",upload.single("image"),addFood);
+
+ foodRouter.get("/list",listFood);
+ foodRouter.post("/remove",removeFood);
 
 
 

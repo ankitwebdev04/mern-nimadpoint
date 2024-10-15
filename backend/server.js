@@ -22,6 +22,8 @@ connectDB();
 
 // api endpoints
 app.use("/api/food",foodRouter)
+// we have mount the uploads folder at /images.So it means we can access bt using /images/filename
+app.use("/images",express.static("uploads"))
 
 app.get("/",(req,res)=>{
     res.send("API Working")
