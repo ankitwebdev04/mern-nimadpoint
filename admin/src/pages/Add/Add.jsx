@@ -3,9 +3,10 @@ import './Add.css';
 import { assets } from '../../assets/assets';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-const Add = () => {
 
-  const url = "http://localhost:4000";
+// destructure the url here which we have used in app.jsx file as a prop
+const Add = ({url}) => {
+
   const [image,setImage] = useState(false);
   const [data,setData] = useState({
     name:"",

@@ -7,12 +7,12 @@ import { StoreContext } from '../../context/StoreContext';
 
 const Fooditem = ({ id, name, price, description, image }) => {
 
-    const { cartItems, addToCart, removeFromCart } = useContext(StoreContext);
+    const { cartItems, addToCart, removeFromCart,url } = useContext(StoreContext);
 
     return (
         <div className='food-item'>
             <div className="food-item-img-container">
-                <img className='food-item-image' src={image} alt="" />
+                <img className='food-item-image' src={url+"/images/"+image} alt="" />
                 {/*IF food itemcount is 0 we provide add button 
             if greater than 0 we will provide 1 counter */}
                 {/* IFitem count is not zero we use ? img tag // 

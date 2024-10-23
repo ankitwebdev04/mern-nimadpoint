@@ -1,4 +1,4 @@
-// ADDED CONTROLLER FUNCTION TO ADD FOOD ITEMS
+// ADDED CONTROLLER FUNCTION TO ADD FOOD ITEMS REMOVE THE FOOD AND LIST THE FOOD
 
 import foodModel from "../models/foodModel.js";
 import fs from 'fs'; // filesystem which is prebuilt in node js
