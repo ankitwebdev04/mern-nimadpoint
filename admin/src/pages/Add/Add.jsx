@@ -99,4 +99,4 @@ const Add = ({url}) => {
   )
 }
 
-export default Add
+export default Add;

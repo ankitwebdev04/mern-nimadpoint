@@ -8,7 +8,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 // placing user order for frontend
 const placeOrder = async (req,res) => {
 
-    const frontend_url =  "http://localhost:5173";
+    const frontend_url =  "http://localhost:5174";
 
     try {
         const newOrder = new orderModel ({
@@ -97,4 +97,28 @@ const verifyOrder =async (req,res) => {
         }
     } 
 
-export {placeOrder,verifyOrder,userOrders}
+// added arrow  function using that we can find all the orders of all the users
+//Listing  orders for admin panel
+const listOrders = async (req,res) => {
+    try {
+        const orders = await orderModel.find({});
+        res.json({success:true,data:orders})
+    } catch (error) {
+        console.log(error);
+        res.json({success:false,message:"Error"}); 
+    }
+} 
+// api for updating order status 
+const updateStatus = async (req,res) => {
+    try {
+        // we will find the order by using ID then we will update the value
+        // we will get the order ID and value from req.body and we will send it while calling the api
+        await orderModel.findByIdAndUpdate(req.body.orderId,{status:req.body.status});
+        res.json({success:true,message:"Status Updated"})
+    } catch (error) {
+        console.log(error);
+        res.json({success:false,message:"Error"});
+    }
+}
+
+export {placeOrder,verifyOrder,userOrders,listOrders,updateStatus}
